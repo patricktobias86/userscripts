@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Zoom Web Meeting Auto Joiner
 // @namespace    https://zoom.us/
-// @version      1.0.2
+// @version      1.0.3
 // @description  Automatically joins Zoom meetings on the web with default name and password, and accepts disclaimers if present.
 // @author       Optimus1132
 // @icon         https://i.imgur.com/y8BXA8l.png
@@ -23,7 +23,7 @@
     const DEFAULT_PASSWORD = "333"; // Set your default password here
 
     function setDefaultName() {
-        const nameInput = document.querySelector("input#inputname");
+        const nameInput = document.getElementById("#input-for-name");
         if (nameInput && !nameInput.value) {
             nameInput.value = DEFAULT_NAME;
             console.log("Default name set to:", DEFAULT_NAME);
@@ -31,7 +31,7 @@
     }
 
     function setDefaultPassword() {
-        const passwordInput = document.querySelector("input#password");
+        const passwordInput = document.getElementById("#input-for-password");
         if (passwordInput && !passwordInput.value) {
             passwordInput.value = DEFAULT_PASSWORD;
             console.log("Default password set to:", DEFAULT_PASSWORD);
@@ -39,7 +39,7 @@
     }
 
     function acceptDisclaimer() {
-        const disclaimerButton = document.querySelector("button[data-qa='joinDisclaimerAccept']");
+        const disclaimerButton = document.getElementById("#disclaimer_agree");
         if (disclaimerButton) {
             disclaimerButton.click();
             console.log("Disclaimer accepted automatically.");
