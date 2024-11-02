@@ -12,8 +12,8 @@
 // @grant        GM_openInTab
 // @grant        GM_setValue
 // @grant        GM_getValue
-// @downloadURL  https://github.com/patricktobias86/userscripts/tree/master/ZoomWebMeetingAutoJoiner.js
-// @updateURL    https://github.com/patricktobias86/userscripts/tree/master/ZoomWebMeetingAutoJoiner.js
+// @downloadURL  https://raw.githubusercontent.com/patricktobias86/userscripts/refs/heads/master/ZoomWebMeetingAutoJoiner.js
+// @updateURL    https://raw.githubusercontent.com/patricktobias86/userscripts/refs/heads/master/ZoomWebMeetingAutoJoiner.js
 // ==/UserScript==
 
 (function() {
