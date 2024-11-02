@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Zoom Web Meeting Auto Joiner
 // @namespace    https://zoom.us/
-// @version      1.0.1
+// @version      1.0.2
 // @description  Automatically joins Zoom meetings on the web with default name and password, and accepts disclaimers if present.
 // @author       Optimus1132
 // @icon         https://i.imgur.com/y8BXA8l.png
@@ -55,8 +55,8 @@
         const urlEnding = match[0][1];
         const meetingId = match[1];
         const mapping = {'j': '/join', 's': '/start'};
-
-document.location.pathname = '/wc/' + encodeURIComponent(meetingId) + mapping[urlEnding];
+        
+        document.location.pathname = '/wc/' + encodeURIComponent(meetingId) + mapping[urlEnding];
     }
 
     // Run the functions when the document is loaded
