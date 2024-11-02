@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Zoom Web Meeting Auto Joiner
 // @namespace    https://zoom.us/
-// @version      1.0
+// @version      1.0.1
 // @description  Automatically joins Zoom meetings on the web with default name and password, and accepts disclaimers if present.
 // @author       Optimus1132
 // @icon         https://i.imgur.com/y8BXA8l.png
@@ -47,28 +47,31 @@
     }
 
     function redirectToWeb() {
-        const url = new URL(window.location.href);
-        if (!url.pathname.includes("/wc/")) {
-            const meetingID = url.pathname.split("/j/")[1];
-            const newURL = `https://zoom.us/wc/join/${meetingID}`;
-            window.location.href = newURL;
-            console.log("Redirected to Zoom web client URL:", newURL);
+        const url = new URL(document.URL);
+        const match = /^\/[js]\/(\d+)\/?$/.exec(url.pathname);
+        if (match === undefined || match === null || match[1] === undefined) {
+            return;
         }
+        const urlEnding = match[0][1];
+        const meetingId = match[1];
+        const mapping = {'j': '/join', 's': '/start'};
+
+document.location.pathname = '/wc/' + encodeURIComponent(meetingId) + mapping[urlEnding];
     }
 
     // Run the functions when the document is loaded
     window.addEventListener("load", () => {
         redirectToWeb();
+        acceptDisclaimer();
         setDefaultName();
         setDefaultPassword();
-        acceptDisclaimer();
     });
 
     // Observe for dynamic elements if the page is using JavaScript to load them after initial load
     const observer = new MutationObserver(() => {
+        acceptDisclaimer();
         setDefaultName();
         setDefaultPassword();
-        acceptDisclaimer();
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
